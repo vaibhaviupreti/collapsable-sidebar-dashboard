@@ -9,17 +9,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { styled } from '@mui/material/styles';
 
 const dummyData = [
-  { id: 1, name: 'Jacob Ryan', designation: 'Receptionist', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '03 Dec 2001', avatar: 'https://via.placeholder.com/150' },
-  { id: 2, name: 'Megha Trivedi', designation: 'Manager', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '17 Mar 2013', avatar: 'https://via.placeholder.com/150' },
-  { id: 3, name: 'Rajesh', designation: 'Director', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '22 Feb 2000', avatar: 'https://via.placeholder.com/150' },
-  { id: 4, name: 'Pooja Patel', designation: 'Programmer', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '27 Aug 2005', avatar: 'https://via.placeholder.com/150' },
-  { id: 5, name: 'Sarah Smith', designation: 'Manager', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '05 Jun 2011', avatar: 'https://via.placeholder.com/150' },
-  { id: 6, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
-  { id: 7, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
-  { id: 8, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
-  { id: 9, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
-  { id: 10, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
-  { id: 11, name: 'Anna Karenina', designation: 'HR', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '01 Jul 2015', avatar: 'https://via.placeholder.com/150' },
+  { id: 1, name: 'Neelesh Kumar', designation: 'Receptionist', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '03 Dec 2001', avatar: 'images/avatar.jpg' },
+  { id: 2, name: 'Megha Trivedi', designation: 'Manager', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '17 Mar 2013', avatar: 'images/avatar.jpg' },
+  { id: 3, name: 'Rajesh', designation: 'Director', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '22 Feb 2000', avatar: 'images/avatar.jpg' },
+  { id: 4, name: 'Pooja Patel', designation: 'Programmer', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '27 Aug 2005', avatar: 'images/avatar.jpg' },
+  { id: 5, name: 'Neelesh Kumar', designation: 'Receptionist', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '03 Dec 2001', avatar: 'images/avatar.jpg' },
+  { id: 6, name: 'Megha Trivedi', designation: 'Manager', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '17 Mar 2013', avatar: 'images/avatar.jpg' },
+  { id: 7, name: 'Rajesh', designation: 'Director', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '22 Feb 2000', avatar: 'images/avatar.jpg' },
+  { id: 8, name: 'Pooja Patel', designation: 'Programmer', mobile: '+167-894-2378', email: 'example@email.com', address: '22,tilak appt. surat', joiningDate: '27 Aug 2005', avatar: 'images/avatar.jpg' },
+ 
 ];
 
 const AllEmployeeTable = () => {
