@@ -31,3 +31,7 @@
     margin-left: 60px;
     width: calc(100% - 60px);
 }
+/* new */
+.mr-20{
+    margin-right: 20px;
+}
