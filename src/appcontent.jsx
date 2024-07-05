@@ -7,6 +7,7 @@ import About from './components/about';
 import Header from './components/header';
 import Login from './pages/login';
 import AllEmployeeTable from './components/Employee/AllEmployeeTable';
+import AddEmployee from './components/Employee/AddEmployee';
 
 const AppContent = ({ isSidebarCollapsed, toggleSidebar }) => {
     const location = useLocation();
@@ -22,6 +23,7 @@ const AppContent = ({ isSidebarCollapsed, toggleSidebar }) => {
                     <Route path="/about" element={<About />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/allemployees" element={<AllEmployeeTable />} />
+                    <Route path="/addemployee" element={<AddEmployee />} />
                 </Routes>
             </div>
         </>

@@ -34,7 +34,8 @@
 
 .login form button {
     padding: 10px;
-    background-color: #4CAF50;
+    /* background-color: #4CAF50; */
+    background-color: #353C48;
     color: white;
     border: none;
     border-radius: 5px;
