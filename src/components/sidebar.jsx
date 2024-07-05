@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../css/sidebar.css';
 
-const Sidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-
-    const toggleSidebar = () => {
-        setIsCollapsed(!isCollapsed);
-    };
-
+const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     return (
         <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
             <div className="toggle-btn" onClick={toggleSidebar}>
-                {isCollapsed ? '➡️' : '⬅️'}
+                {isCollapsed ? 'open' : 'close'}
             </div>
             <ul>
                 <li><Link to="/">Home</Link></li>

@@ -6,10 +6,14 @@ import AppContent from "./appcontent";
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
   return (
     <Router>
       <div className="App">
-        <AppContent isSidebarCollapsed={isSidebarCollapsed} />
+        <AppContent isSidebarCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />
       </div>
     </Router>
   );
