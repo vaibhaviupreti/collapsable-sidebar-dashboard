@@ -56,13 +56,13 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
 
     return (
         <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-            <div className="toggle-btn" onClick={toggleSidebar}>
+            {/* <div className="toggle-btn" onClick={toggleSidebar}>
                 {isCollapsed ?
                     <FontAwesomeIcon icon={faBars} />
                     :
                     <FontAwesomeIcon icon={faBars} />
                 }
-            </div>
+            </div> */}
             <ul>
                 <li><Link to="/"><FontAwesomeIcon className='mr-20' icon={faHome} />Home</Link></li>
                 <li><Link to="/about"><FontAwesomeIcon className='mr-20' icon={faInfoCircle} />About</Link></li>

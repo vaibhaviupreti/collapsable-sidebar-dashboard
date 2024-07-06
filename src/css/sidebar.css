@@ -1,7 +1,7 @@
 /* Sidebar CSS */
 .sidebar {
     background-color: #f4f4f4;
-    width: 200px;
+    width: 220px;
     height: 100vh;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -22,8 +22,8 @@
 
 /* Content CSS */
 .content {
-    margin-left: 220px;
-    padding: 20px;
+    margin-left: 260px;
+    /* padding: 20px; */
     transition: margin-left 0.3s, width 0.3s;
 }
 

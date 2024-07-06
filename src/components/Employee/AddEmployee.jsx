@@ -5,85 +5,31 @@ import FormComponent from "../InputForm/FormComponent";
 const AddEmployee = () => {
   const dummyFormData = [
     {
-      title: "Client Registration Form",
+      title: "Add Employee",
       fields: [
-        { type: "text", label: "Full Name", name: "full_name", required: true },
-        {
-          type: "number",
-          label: "Mobile Number",
-          name: "mobile_number",
-          required: true,
-        },
+        { type: "text", label: "First Name", name: "first_name", required: true },
+        { type: "text", label: "Last Name", name: "last_name", required: true },
         { type: "email", label: "Email", name: "email", required: true },
-        { type: "text", label: "Address Line 1", name: "address_line1" },
-        { type: "text", label: "Address Line 2", name: "address_line2" },
-        { type: "text", label: "City", name: "city" },
+        { type: "text", label: "Designation", name: "designation", required: true },
+        { type: "text", label: "Telephone", name: "telephone", required: true },
+        { type: "text", label: "Address", name: "address", required: true },
+        { type: "date", label: "Joining Date", name: "joining_date", required: true },
         {
           type: "select",
-          label: "State",
-          name: "state",
+          label: "Gender",
+          name: "gender",
           options: [
-            { label: "Maharashtra", value: "maharashtra" },
-            { label: "Uttar Pradesh", value: "uttar-pradesh" },
-            { label: "Karnataka", value: "karnataka" },
+            { label: "Male", value: "male" },
+            { label: "Female", value: "female" },
+            { label: "Other", value: "other" },
           ],
         },
-        { type: "text", label: "Country", name: "country" },
+        { type: "date", label: "Birth Date", name: "birth_date", required: true },
+        { type: "file", label: "Upload Your Profile Photo", name: "profile_photo" },
       ],
     },
-    // {
-    //   title: "Identification and Qualifications",
-    //   fields: [
-    //     { type: "text", label: "GST Certificate", name: "gst_certificate" },
-    //     {
-    //       type: "select",
-    //       label: "Documents",
-    //       name: "documents",
-    //       options: [
-    //         { label: "Select a document", value: "select" },
-    //         { label: "12th Marksheet", value: "mumbai" },
-    //         { label: "Degree", value: "delhi" },
-    //       ],
-    //     },
-    //     {
-    //       type: "file",
-    //       label: "Upload Documents Image",
-    //       name: "documents_files",
-    //       accept: "image/*",
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Services",
-    //   fields: [
-    //     {
-    //       type: "select",
-    //       label: "Select Service",
-    //       name: "services",
-    //       options: [
-    //         { label: "service1", value: "service1" },
-    //         { label: "service2", value: "s2" },
-    //         { label: "service3", value: "s3" },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Services Combo",
-    //   fields: [
-    //     {
-    //       type: "select",
-    //       label: "Select Services",
-    //       name: "services_combo",
-    //       options: [
-    //         { label: "service11", value: "service1" },
-    //         { label: "service22", value: "s2" },
-    //         { label: "service33", value: "s3" },
-    //       ],
-    //     },
-    //   ],
-    // },
   ];
+
   return (
     <div className="root-div mt-50px form-w" style={{padding:'20px'}}>
       <Paper elevation={3} className="border-radius-18px">

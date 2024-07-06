@@ -15,8 +15,9 @@ const AppContent = ({ isSidebarCollapsed, toggleSidebar }) => {
 
     return (
         <>
-            {!isLoginRoute && <Header />}
+            {/* {!isLoginRoute && <Header />} */}
             {!isLoginRoute && <Sidebar isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />}
+            {!isLoginRoute && <Header isCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />}
             <div className={`content ${isSidebarCollapsed ? 'collapsed' : ''}`}>
                 <Routes>
                     <Route path="/" element={<Home />} />
