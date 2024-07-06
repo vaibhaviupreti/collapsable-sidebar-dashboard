@@ -22,9 +22,10 @@ import {
 // import { addService } from "../../../api/service";
 import { useNavigate } from "react-router-dom";
 // import Permission from "../../Permissions/Permission";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload  } from '@fortawesome/free-solid-svg-icons';
+import { DropzoneArea } from "react-mui-dropzone";
+import ReactQuill from "react-quill";
 
 const FormComponent = ({ formData, formname, service }) => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const FormComponent = ({ formData, formname, service }) => {
       setUserRoutes(userRoutes?.filter((v) => v !== temp.lnk));
     }
   };
-  console.log(userRoutes,"user")
+  // console.log(userRoutes,"user")
 
   // State to hold form values for each step
   const [allFormValues, setAllFormValues] = useState(
@@ -52,12 +53,7 @@ const FormComponent = ({ formData, formname, service }) => {
     }, {})
   );
 
-  const DatePickersContainer = styled(Grid)(({ theme }) => ({
-    marginBottom: theme.spacing(2),
-    display: "flex",
-    gap: theme.spacing(2),
-  }));
-
+ 
   const formValues = {};
   // for (let [name, value] of formData.entries()) {
   //   formValues[name] = value;
@@ -65,17 +61,37 @@ const FormComponent = ({ formData, formname, service }) => {
   // console.log("form values",formValues);
 
   // Function to handle form field changes
-  const handleFormFieldChange = (stepIndex, fieldName, fieldValue) => {
+  const handleFormFieldChangeOld = (stepIndex, fieldName, fieldValue) => {
     setAllFormValues((prevValues) => {
       const updatedValues = { ...prevValues };
       updatedValues[stepIndex][fieldName] = fieldValue;
       return updatedValues;
     });
   };
+  const handleFormFieldChange = (stepIndex, fieldName, fieldValue) => {
+    setAllFormValues((prevValues) => {
+      const updatedValues = {
+        ...prevValues,
+        [stepIndex]: {
+          ...prevValues[stepIndex],
+          [fieldName]: fieldValue,  
+        },
+      };
+      return updatedValues;
+    });
+  };
 
   const handleSubmit = async (event) => {
-    // event.preventDefault();
-    console.log("submit clicked....")
+    event.preventDefault();
+    console.log("submit clicked....");
+    console.log("submit clicked....",formname);
+
+    const combinedFormValues = Object.values(allFormValues).reduce(
+      (acc, stepValues) => ({ ...acc, ...stepValues }),
+      {}
+    );
+  
+    console.log("Combined Form Values:", combinedFormValues);
 
     // Combine all form values from all steps
     // const combinedFormValues = Object.values(allFormValues).reduce(
@@ -163,6 +179,60 @@ const FormComponent = ({ formData, formname, service }) => {
   };
 
   const theme = useTheme();
+  // cutomizing the mui..............................>>>>>
+  
+  const CustomTextField = styled(TextField)(({ theme }) => ({
+    marginTop: "24px",    
+    "& .MuiInputBase-root": {
+      // color: "#000", //  input text
+      color: "#555", 
+    },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "#000", // underline
+      borderBottomColor: "#555", // underline
+    },
+    "& .MuiInput-underline:hover:before": {
+      borderBottomColor: "#000", //  underline on hover
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#008000", // green color on focus
+    },
+    "& .MuiInputLabel-root": {
+      color: "#000", 
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "#008000", 
+      // transform: "none", 
+    },
+  }));
+  const CustomSelect = styled(Select)(({ theme }) => ({
+    marginTop: "24px", 
+    "& .MuiInputBase-root": {
+      color: "#555",
+    },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "#555",
+    },
+    "& .MuiInput-underline:hover:before": {
+      borderBottomColor: "#555",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#008000",
+    },
+    "& .MuiInputLabel-root": {
+      color: "#000",
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "#008000",
+      transform: "none",
+    },
+  }));
+
+  const DatePickersContainer = styled(Grid)(({ theme }) => ({
+    marginBottom: theme.spacing(2),
+    display: "flex",
+    gap: theme.spacing(2),
+  }));
 
   return (
     <div
@@ -197,10 +267,10 @@ const FormComponent = ({ formData, formname, service }) => {
 
       <Paper
         elevation={0}
-        className={`form-paper border-radius-18px w-100 ${
+        className={`form-paper w-100 ${
           formData.length > 1 ? "" : "mt-35px"
         }`}
-        style={{ padding: "10px" }}
+        style={{ padding: "10px",borderRadius:'18px' }}
       >
         <form
           className={`w-100 ${formData.length > 1 ? "mt-20px" : ""}`}
@@ -213,49 +283,89 @@ const FormComponent = ({ formData, formname, service }) => {
                 gutterBottom
                 style={{
                   fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-                  fontWeight: 700,
+                  fontWeight: 600,
+                  fontSize:'16px'
                 }}
               >
                 {formData[activeStep].title}
-              </Typography>
-              <Typography
-                variant="h6"
-                gutterBottom
-                style={{
-                  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-                  fontWeight: 300,
-                  fontSize: "14px",
-                  lineHeight: 0.5,
-                  marginBottom: "20px",
-                }}
-              >
-                Mandatory Informations
-              </Typography>
-              <Grid container spacing={2}>
-                {formData[activeStep].fields.map((field, fieldIndex) => (
-                  <Grid item xs={12} md={6} key={fieldIndex}>
+              </Typography>             
+              <Grid container spacing={2}>              
+              {formData[activeStep].fields.map((field, fieldIndex) => (
+                <Grid item xs={12} md={field.fullSpace === true ? 12 : 6} key={fieldIndex}>
+                    {field.type === "dropzone" && (
+                      <Grid item xs={12} style={{marginTop:'24px'}}>
+                        <>
+                        <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+                        fontWeight: 400,
+                        fontSize:'14px'
+                      }}
+                    >
+                      Upload Project Documents
+                    </Typography> 
+                       <DropzoneArea
+                       fullWidth
+                          acceptedFiles={['image/*']}
+                          dropzoneText={field.label}
+                          filesLimit={10}
+                          // dropzoneProps={{
+                          //   style: {
+                          //     height: '100px',
+                          //     maxHeight: 'auto',
+                          //   }
+                          // }}
+                          onChange={(files) => 
+                            handleFormFieldChange(
+                              activeStep,
+                              field.name,
+                              files
+                            )
+                          }
+                        />
+                        </>
+                      </Grid>
+                    )}
                     {field.type === "text" && (
-                      <TextField
-                        label={field.label}
-                        name={field.name}
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        required={field.required}
-                        value={allFormValues[activeStep][field.name] || ""}
-                        onChange={(e) =>
-                          handleFormFieldChange(
-                            activeStep,
-                            field.name,
-                            e.target.value
-                          )
-                        }
+                      // <TextField
+                        // label={field.label}
+                        // name={field.name}
+                        // type="text"
+                        // fullWidth
+                        // variant="standard"
+                        // required={field.required}
+                        // value={allFormValues[activeStep][field.name] || ""}
+                        // onChange={(e) =>
+                        //   handleFormFieldChange(
+                        //     activeStep,
+                        //     field.name,
+                        //     e.target.value
+                        //   )
+                        // }
+                      // />
+                      <CustomTextField
+                      label={field.label}
+                      name={field.name}
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                      required={field.required}
+                      value={allFormValues[activeStep][field.name] || ""}
+                      onChange={(e) =>
+                        handleFormFieldChange(
+                          activeStep,
+                          field.name,
+                          e.target.value
+                        )
+                      }
                       />
                     )}
                     {field.type === "date" && (
                       <DatePickersContainer>
-                        <Grid item lg={6} sm={6} xs={12} key={fieldIndex}>
-                          <TextField
+                        <Grid item lg={12} sm={12} xs={12} key={fieldIndex}>
+                          <CustomTextField
                             fullWidth
                             label={field.label}
                             name={field.name}
@@ -298,7 +408,7 @@ const FormComponent = ({ formData, formname, service }) => {
                       </DatePickersContainer>
                     )}
                     {field.type === "number" && (
-                      <TextField
+                      <CustomTextField
                         label={field.label}
                         name={field.name}
                         type="number"
@@ -316,7 +426,7 @@ const FormComponent = ({ formData, formname, service }) => {
                       />
                     )}
                     {field.type === "email" && (
-                      <TextField
+                      <CustomTextField
                         label={field.label}
                         name={field.name}
                         type="email"
@@ -336,7 +446,8 @@ const FormComponent = ({ formData, formname, service }) => {
                     {field.type === "select" && (
                       <FormControl fullWidth variant="standard">
                         <InputLabel>{field.label}</InputLabel>
-                        <Select
+                        <CustomSelect
+                          sx={{marginTop: 35}}
                           name={field.name}
                           required={field.required}
                           value={allFormValues[activeStep][field.name] || ""}
@@ -353,7 +464,7 @@ const FormComponent = ({ formData, formname, service }) => {
                               {option.label}
                             </MenuItem>
                           ))}
-                        </Select>
+                        </CustomSelect>
                       </FormControl>
                     )}
                     {field.type === "file" && (
@@ -417,9 +528,31 @@ const FormComponent = ({ formData, formname, service }) => {
                         }
                         label={field.label}
                       />
-                    )}
+                    )}  
+                    {field.type === "editor" && (  
+                    //  <ReactQuill theme="snow" value={field.content} onChange={handleChange} /> 
+                    <div style={{marginTop:'24px'}}>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      style={{
+                        fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+                        fontWeight: 400,
+                        fontSize:'14px'
+                      }}
+                    >
+                      Details about Project 
+                    </Typography> 
+                     <ReactQuill 
+                        theme="snow"
+                        value={allFormValues[activeStep][field.name] || ""}
+                        onChange={(value) => handleFormFieldChange(activeStep, field.name, value)}
+                      /> 
+                      </div>              
+                     )}  
                   </Grid>
-                ))}
+                  ))}
+                                     
               </Grid>
               {/* {formname === "employee" && (
                 <Permission

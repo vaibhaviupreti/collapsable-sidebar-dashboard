@@ -24,7 +24,7 @@ const data = [
         title: 'Projects',
         subItems: [
             { id: '1a', title: 'All Projects', link: '/allemployees' },
-            { id: '1b', title: 'Add Projects', link: '/addemployee' },
+            { id: '1b', title: 'Add Projects', link: '/addproject' },
             { id: '1b', title: 'Edit Projects', link: '/editemployee' }
         ]
     },

@@ -8,6 +8,7 @@ import Header from './components/header';
 import Login from './pages/login';
 import AllEmployeeTable from './components/Employee/AllEmployeeTable';
 import AddEmployee from './components/Employee/AddEmployee';
+import AddProject from './components/Projects/AddProject';
 
 const AppContent = ({ isSidebarCollapsed, toggleSidebar }) => {
     const location = useLocation();
@@ -24,7 +25,12 @@ const AppContent = ({ isSidebarCollapsed, toggleSidebar }) => {
                     <Route path="/about" element={<About />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/allemployees" element={<AllEmployeeTable />} />
-                    <Route path="/addemployee" element={<AddEmployee />} />
+                    {/* employee */}
+                    <Route path="/addemployee" element={<AddEmployee title="Add Employee" />} />
+                    <Route path="/editemployee" element={<AddEmployee title="Edit Employee" />} />
+                    {/* projects */}
+                    <Route path="/addproject" element={<AddProject title="Add Project" />} />
+                    <Route path="/editproject" element={<AddProject title="Edit Project" />} />
                 </Routes>
             </div>
         </>
